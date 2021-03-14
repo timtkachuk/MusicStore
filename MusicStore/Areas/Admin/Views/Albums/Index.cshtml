@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MusicStore.Data.Album>
+@{
+    ViewBag.Title = "Albüm Yönetimi";
+
+    var grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="border bg-light shadow-sm p-2 text-right form-inline text-right">
+
+    @using (Html.BeginForm("Search", "Albums", FormMethod.Get, new { @class = "ml-auto" }))
+    {
+        <input type="search" name="keyword" class="form-control form-control-sm" value="@Request["keyword"]" />
+        <button class="btn btn-sm btn-primary">Ara</button>
+        <a class="btn btn-sm btn-light" href="@Url.Action("Index")">Temizle</a>
+    }
+
+    <a href="@Url.Action("Create")" class="btn-sm btn-primary ml-2">
+        <i class="fa fa-plus"></i> YENİ
+    </a>
+</div>
+
+
+@grid.GetHtml(tableStyle: "table table-bordered",
+    columns: grid.Columns(
+        grid.Column(header: "Kapak Fotoğrafı", format: @<text>
+            @if (item.CoverImage != null)
+                        {
+                <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.CoverImage)" height="90" />
+                        }
+                        else
+                        {
+                <img src="~/Content/images/no user.png" height="90" />
+                        }
+        </text>),
+grid.Column(header: "Tür", columnName: "Genre.Name"),
+grid.Column(header: "Sanatçı", columnName: "Artist.Name"),
+grid.Column(header: "Albüm Adı", columnName: "Name", style: "col-7"),
+grid.Column(header: "Yıl", columnName: "Year"),
+grid.Column(header: "Fiyat", columnName: "Price", format:@<text>@item.Price.ToString("c2")</text>),
+grid.Column(header: "İşlemler", format: @<text>
+            <a href="@Url.Action("Edit", new { id = item.Id })" class="mr-2 text-secondary"><i class="fa fa-pen"></i></a>
+            <a href="@Url.Action("Remove", new { id = item.Id })" class="text-secondary remove-btn"><i class="fa fa-trash"></i></a>
+</text>)))
+
+@section scripts {
+    <script>
+
+        $(() => {
+            $('.remove-btn').click(function () {
+                var item = $(this);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'UYARI!',
+                    text: 'Bu kayıt tamamen silinecektir. Devam etmek istiyor musunuz?',
+                    showCancelButton: true,
+                    cancelButtonText: '<i class="fa fa-times"></i> İPTAL',
+                    confirmButtonText: '<i class="fa fa-trash"></i> SİL'
+                })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = $(item).attr('href');
+                        }
+                    });
+
+
+                return false;
+            });
+        })
+
+
+    </script>
+}
+
+

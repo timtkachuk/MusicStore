@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MusicStore.Data.Album>
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Son Eklenenler</h2>
+<div class="row d-flex flex-wrap">
+    @foreach (var album in Model)
+    {
+        @Html.Partial("AlbumBox", album)
+    }
+</div>

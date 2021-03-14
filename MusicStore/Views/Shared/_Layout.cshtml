@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>@ViewBag.Title - MusicStore</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous" />
+</head>
+<body class="bg-light h-100">
+    <div id="mainHeader">
+        <div class="container py-2">
+            <div class="d-flex align-items-center">
+                <div class="p-2">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/Content/images/ms-logo.png" width="200" height="100" loading="lazy" />
+                    </a>
+</div>
+                <div class="flex-fill p-2">
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+                    {
+                        <div class="d-flex">
+                            <div class="flex-fill">
+                                <input type="search" name="keyword" placeholder="albüm, tür ya da sanatçı ..." class="ms-form-control" />
+                            </div>
+                            <div>
+                                <button class="ms-btn" type="submit"><b>Ara</b></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="p-2">
+                    @Html.Action("ShoppingCartButton")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menuBar">
+        <div class="container">
+            <div class="d-flex">
+                <div class="ms-menu-item">
+                    <a href="@Url.Action("Index","Home")">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </div>
+                <div class="ms-menu-item">
+                    <a href="@Url.Action("ArtistList","Home")">
+                        SANATÇILAR
+                    </a>
+                </div>
+                <div class="ms-menu-item">
+                    <a href="@Url.Action("About","Home")">
+                        HAKKIMIZDA
+                    </a>
+                </div>
+                <div class="ms-menu-item">
+                    <a href="@Url.Action("Contact","Home")">
+                        İLETİŞİM
+                    </a>
+                </div>
+                <div class="flex-fill">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="mh-100">
+        <div class="container bg-white border-left border-right shadow-sm h-100">
+            <div class="row m-0">
+                <div class="col-3 p-0">
+                    <div class="ms-label-box mt-2">
+                        KATEGORİLER
+                    </div>
+                    @Html.Action("CategoryMenu", "Home")
+                    <hr />
+                    @Html.Action("TopReviews", "Home")
+                </div>
+                <div class="col-9">
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["success"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

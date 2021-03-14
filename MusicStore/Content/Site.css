@@ -1,0 +1,84 @@
+﻿
+.field-validation-error {
+    color: #ff1133;
+}
+
+
+#mainHeader {
+    background-image: url(Images/header-bg.png);
+}
+
+.ms-form-control {
+    border: 1px solid #000000;
+    line-height: 36px;
+    width: 100%;
+}
+
+.ms-btn {
+    background-image: linear-gradient(#F48A00, #F07815);
+    color: #ffffff;
+    border: none;
+    line-height: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.ms-shopping-cart-panel {
+    border: 1px solid #666666;
+    background-color: rgba(0,0,0,.5);
+    color: #ffffff;
+    padding: 7px;
+}
+
+#menuBar {
+    background-image: linear-gradient(#dddddd, #cccccc);
+    border-bottom: 1px solid #999999;
+    color: #666666;
+}
+
+.ms-menu-item:first-child {
+    border-left: 1px solid #666666;
+}
+
+.ms-menu-item {
+    border-right: 1px solid #666666;
+    padding: 6px;
+    transition: .5s all linear;
+}
+
+    .ms-menu-item:hover {
+        color: #f07815;
+    }
+
+    .ms-menu-item a {
+        color: inherit;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+        .ms-menu-item a:hover {
+            text-decoration: none;
+        }
+
+.ms-text-orange {
+    color: #f07815;
+}
+
+ul.ms-stack-menu {
+    list-style: none;
+    padding: 0;
+}
+
+    ul.ms-stack-menu li {
+        background-image: linear-gradient(#f5f5f5, #f0f0f0);
+        border: 1px solid #e8e8e8;
+        padding: .5rem;
+    }
+
+.ms-label-box {
+    background-image: linear-gradient(#F48A00, #F07815);
+    color: #ffffff;
+    line-height: 40px;
+    border: 1px solid #e8e8e8;
+    text-align: center
+}

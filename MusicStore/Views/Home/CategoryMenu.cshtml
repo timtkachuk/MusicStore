@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MusicStore.Data.Genre>
+@{
+    Layout = null;
+}
+<ul class="ms-stack-menu">
+    @foreach (var genre in Model)
+    {
+        <li>
+            <a href="@Url.RouteUrl("Genre", new { Name = genre.Name.ToSafeUrlString(), Id = genre.Id })">@genre.Name</a>
+        </li>
+    }
+</ul>
